@@ -119,7 +119,16 @@ export class GraphActionsBar extends React.Component<
 
     handleFrameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
-        this.setState({ frame: e.target.value });
+        const value = parseInt(e.target.value);
+        const max = this.state.max;
+        const min = this.state.min;
+        if (max && min) {
+            if (value <= max! && value >= min){
+                this.setState({ frame: e.target.value });
+            }
+        } else {
+            this.setState({ frame: e.target.value });
+        }
     };
 
     render() {
